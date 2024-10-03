@@ -1,6 +1,7 @@
 from flask import Flask
+
+from controllers import user_controller, auth_controller
 from models.user_model import db
-from controllers.user_controller import user_bp
 from dotenv import load_dotenv
 import os
 
@@ -13,8 +14,17 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 db.init_app(app)
 
-# Registrar el blueprint del controlador de usuarios
-app.register_blueprint(user_bp)
+# Rutas para usuarios (CRUD)
+app.add_url_rule('/', view_func=user_controller.index)
+app.add_url_rule('/create', view_func=user_controller.create_user, methods=['GET', 'POST'])
+app.add_url_rule('/edit/<int:id>', view_func=user_controller.edit_user, methods=['GET', 'POST'])
+app.add_url_rule('/delete/<int:id>', view_func=user_controller.delete_user)
+
+# Rutas para autenticación
+app.add_url_rule('/register', view_func=auth_controller.register, methods=['GET', 'POST'])
+app.add_url_rule('/login', view_func=auth_controller.login, methods=['GET', 'POST'])
+app.add_url_rule('/logout', view_func=auth_controller.logout)
+
 
 # Crear las tablas si no existen
 with app.app_context():

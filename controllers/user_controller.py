@@ -1,18 +1,13 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-from models.user_model import db, User
+from flask import render_template, request, redirect, url_for, flash, session
+from models.user_model import User, db
+from controllers.auth_controller import login_required
 
-user_bp = Blueprint('user_bp', __name__)
 
-
-# Ruta principal - Listar usuarios
-@user_bp.route('/')
 def index():
     users = User.query.all()
     return render_template('index.html', users=users)
 
 
-# Ruta para crear un nuevo usuario
-@user_bp.route('/create', methods=['GET', 'POST'])
 def create_user():
     if request.method == 'POST':
         name = request.form['name']
@@ -21,12 +16,11 @@ def create_user():
         db.session.add(new_user)
         db.session.commit()
         flash('Usuario creado exitosamente!')
-        return redirect(url_for('user_bp.index'))
+        return redirect(url_for('index'))
     return render_template('create_user.html')
 
 
-# Ruta para editar un usuario existente
-@user_bp.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_user(id):
     user = User.query.get_or_404(id)
     if request.method == 'POST':
@@ -34,15 +28,14 @@ def edit_user(id):
         user.email = request.form['email']
         db.session.commit()
         flash('Usuario actualizado correctamente!')
-        return redirect(url_for('user_bp.index'))
+        return redirect(url_for('index'))
     return render_template('create_user.html', user=user)
 
 
-# Ruta para eliminar un usuario
-@user_bp.route('/delete/<int:id>')
+@login_required
 def delete_user(id):
     user = User.query.get_or_404(id)
     db.session.delete(user)
     db.session.commit()
     flash('Usuario eliminado exitosamente!')
-    return redirect(url_for('user_bp.index'))
+    return redirect(url_for('index'))
