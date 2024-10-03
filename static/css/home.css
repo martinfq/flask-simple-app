@@ -78,6 +78,10 @@ body {
     font-size: 2rem;
 }
 
+.h3 {
+    color: white;
+}
+
 .users a.btn {
     display: inline-block;
     margin-bottom: 20px;

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <h1>Editar Perfil</h1>
+    <form method="POST">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" value="{{ user.name }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ user.email }}" required>
+
+        <label for="password">Nueva Contraseña (opcional):</label>
+        <input type="password" name="password">
+
+        <button type="submit" name="update">Actualizar Información</button>
+    </form>
+
+
+
+
+    <a href="/logout">Cerrar Sesión</a>
+
+<form method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
+        <button type="submit" name="delete" style="background-color: red; color: white;">Eliminar Cuenta</button>
+    </form>
+{% endblock %}

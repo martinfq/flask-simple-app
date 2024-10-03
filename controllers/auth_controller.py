@@ -2,7 +2,7 @@ from functools import wraps
 
 from flask import render_template, request, redirect, url_for, flash, session
 from models.user_model import User, db
-
+from werkzeug.security import check_password_hash
 
 # Registro de nuevos usuarios
 def register():
@@ -31,11 +31,12 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = User.query.filter_by(email=email).first()
 
-        if user and user.check_password(password):
-            session['user_id'] = user.id  # Guardar el ID del usuario en la sesión
-            flash('Inicio de sesión exitoso.')
+        user = User.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            session['user_name'] = user.name  # Guardar nombre del usuario en la sesión
+            flash('Has iniciado sesión exitosamente.')
             return redirect(url_for('index'))
         else:
             flash('Credenciales incorrectas.')
@@ -46,7 +47,8 @@ def login():
 
 # Cerrar sesión
 def logout():
-    session.pop('user_id', None)  # Eliminar la sesión
+    session.pop('user_id', None)
+    session.pop('user_name', None)
     flash('Has cerrado sesión.')
     return redirect(url_for('login'))
 
