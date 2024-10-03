@@ -3,13 +3,16 @@ from functools import wraps
 from flask import render_template, request, redirect, url_for, flash, session
 from models.user_model import User, db
 from werkzeug.security import check_password_hash
+from validators.user_forms import LoginForm, RegistrationForm
+
 
 # Registro de nuevos usuarios
 def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+    form = RegistrationForm()  # Inicializa el formulario de registro
+    if form.validate_on_submit():
+        email = form.email.data
+        name = form.name.data
+        password = form.password.data
 
         if User.query.filter_by(email=email).first():
             flash('El email ya está registrado.')
@@ -23,14 +26,15 @@ def register():
         flash('Registro exitoso. Ahora puedes iniciar sesión.')
         return redirect(url_for('login'))
 
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 
 # Inicio de sesión
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+    form = LoginForm()  # Inicializa el formulario de inicio de sesión
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
 
         user = User.query.filter_by(email=email).first()
         if user and check_password_hash(user.password, password):
@@ -42,7 +46,7 @@ def login():
             flash('Credenciales incorrectas.')
             return redirect(url_for('login'))
 
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 
 # Cerrar sesión

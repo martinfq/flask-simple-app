@@ -1,46 +1,82 @@
 {% extends 'layout.html' %}
-    <!-- Navbar -->
+<!-- Navbar -->
 
 {% block content %}
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="/static/img/banner.webp" alt="Banner Image">
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <img src="/static/img/banner.webp" alt="Banner Image">
+</section>
 
-    <!-- Line Separator -->
-    <hr class="separator">
+<!-- Line Separator -->
+<hr class="separator">
 
-    <!-- Users Section -->
-    <section class="users">
-        <h1>Usuarios</h1>
-       <form method="GET" action="/">
-        <input type="text" name="search" placeholder="Buscar usuarios..." value="{{ search_query }}">
-        <button type="submit">Buscar</button>
+<!-- Users Section -->
+<section class="users">
+    <h1>Lista de Usuarios</h1>
+
+    <form method="GET" action="/" class="search-form">
+        <input type="text" name="search" placeholder="Buscar usuarios..."
+               value="{{ search_query if search_query is not none else '' }}"
+               class="search-input">
+        <button type="submit" class="search-button">Buscar</button>
     </form>
 
-    <table>
+    <!-- Tabla de usuarios -->
+    <table class="user-table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
             </tr>
         </thead>
         <tbody>
-            {% if users %}
-                {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
-                </tr>
-                {% endfor %}
+            {% for user in users.items %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
             {% else %}
-                <tr>
-                    <td colspan="3">No se encontraron usuarios.</td>
-                </tr>
-            {% endif %}
+            <tr>
+                <td colspan="2" class="no-users">No se encontraron usuarios.</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
-    </section>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation" class="pagination-nav">
+        <ul class="pagination">
+            {% if users.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('index', page=users.prev_num, search=search_query) }}">Anterior</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+            {% endif %}
+
+            {% for page_num in users.iter_pages() %}
+            {% if page_num %}
+            {% if page_num == users.page %}
+            <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
+            {% else %}
+            <li>----</li>
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('index', page=page_num, search=search_query) }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">…</span></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if users.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('index', page=users.next_num, search=search_query) }}">Siguiente</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</section>
 {% endblock %}

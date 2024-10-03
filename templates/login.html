@@ -9,6 +9,8 @@
 <body>
     <h1>Iniciar Sesión</h1>
     <form method="POST">
+        {{ form.hidden_tag() }}
+
         <label for="email">Email:</label>
         <input type="email" name="email" required>
 

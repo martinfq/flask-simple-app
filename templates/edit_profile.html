@@ -1,26 +1,33 @@
 {% extends 'layout.html' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
+<section>
     <h1>Editar Perfil</h1>
-    <form method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" name="name" value="{{ user.name }}" required>
+    <form method="POST" action="{{ url_for('edit_profile') }}">
+    {{ form.hidden_tag() }}
+    <label for="name">Nombre:</label>
+    <input type="text" name="name" value="{{ user.name }}" required>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="{{ user.email }}" required>
+    <label for="email">Email:</label>
+    <input type="email" name="email" value="{{ user.email }}" required>
 
-        <label for="password">Nueva Contraseña (opcional):</label>
-        <input type="password" name="password">
+    <label for="password">Nueva Contraseña (opcional):</label>
+    <input type="password" name="password">
 
-        <button type="submit" name="update">Actualizar Información</button>
-    </form>
+    <button type="submit" name="update">Actualizar Información</button>
+</form>
+</section>
 
-
-
-
+<section>
     <a href="/logout">Cerrar Sesión</a>
+</section>
 
-<form method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
-        <button type="submit" name="delete" style="background-color: red; color: white;">Eliminar Cuenta</button>
-    </form>
+<section>
+    <form method="POST" action="{{ url_for('delete_profile') }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
+    {{ form.hidden_tag() }}
+    <button type="submit" name="delete" style="background-color: red; color: white;">Eliminar Cuenta</button>
+</form>
+
+</section>
+
 {% endblock %}
