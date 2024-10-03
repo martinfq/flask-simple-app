@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if user %}Editar{% else %}Crear{% endif %} Usuario</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{% if user %}Editar{% else %}Crear{% endif %} Usuario</h1>
+    <form method="POST">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" value="{{ user.name if user else '' }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ user.email if user else '' }}" required>
+
+        <button type="submit">{% if user %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+    <a href="/">Regresar</a>
+</body>
+</html>
