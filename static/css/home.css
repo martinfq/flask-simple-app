@@ -1,0 +1,131 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    height: 50px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.logo {
+    height: 100%; /* El logo ocupa toda la altura del navbar */
+}
+
+.logo img {
+    height: 100%; /* La imagen del logo también ocupa toda la altura del navbar */
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.login-button .btn {
+    color: #fff;
+    background-color: #7e1a5a;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0px 20px
+}
+
+.login-button .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.hero img {
+    width: 80%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Line Separator */
+.separator {
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+/* Users Section */
+.users {
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.users h1 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.users a.btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.users a.btn:hover {
+    background-color: #218838;
+}
+
+.users ul {
+    list-style: none;
+    padding: 0;
+}
+
+.users ul li {
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users a.btn-small {
+    color: white;
+    background-color: #ffc107;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.users a.btn-small:hover {
+    background-color: #e0a800;
+}
+
+/* Footer */
+.footer {
+    border-radius: 10px 10px 0px 0px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    position: relative;
+}

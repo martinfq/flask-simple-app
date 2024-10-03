@@ -3,22 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Martin Fierro - App </title>
+    <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
-    <h1>Listado de Usuarios</h1>
-    <a href="/create">Crear Nuevo Usuario</a>
-    <ul>
-        {% for user in users %}
-        <li>
-            {{ user.name }} - {{ user.email }}
-            <a href="/edit/{{ user.id }}">Editar</a>
-            <a href="/delete/{{ user.id }}" onclick="return confirm('¿Estás seguro?');">Eliminar</a>
-        </li>
-        {% else %}
-        <li>No hay usuarios.</li>
-        {% endfor %}
-    </ul>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/static/img/logo.jpg" alt="Logo">
+        </div>
+        <div class="login-button">
+            <a href="/login" class="btn">Ingresar</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="/static/img/banner.webp" alt="Banner Image">
+    </section>
+
+    <!-- Line Separator -->
+    <hr class="separator">
+
+    <!-- Users Section -->
+    <section class="users">
+        <h1>Usuarios</h1>
+        <a href="/create" class="btn">Crear Nuevo Usuario</a>
+        <ul>
+            {% for user in users %}
+            <li>
+                {{ user.name }} - {{ user.email }}
+                <a href="/edit/{{ user.id }}" class="btn-small">Editar</a>
+                <a href="/delete/{{ user.id }}" class="btn-small" onclick="return confirm('¿Estás seguro?');">Eliminar</a>
+            </li>
+            {% else %}
+            <li>No hay usuarios.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Mi Aplicación de Usuarios</p>
+    </footer>
 </body>
 </html>

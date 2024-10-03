@@ -3,11 +3,13 @@ from models.user_model import db, User
 
 user_bp = Blueprint('user_bp', __name__)
 
+
 # Ruta principal - Listar usuarios
 @user_bp.route('/')
 def index():
     users = User.query.all()
     return render_template('index.html', users=users)
+
 
 # Ruta para crear un nuevo usuario
 @user_bp.route('/create', methods=['GET', 'POST'])
@@ -22,6 +24,7 @@ def create_user():
         return redirect(url_for('user_bp.index'))
     return render_template('create_user.html')
 
+
 # Ruta para editar un usuario existente
 @user_bp.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_user(id):
@@ -33,6 +36,7 @@ def edit_user(id):
         flash('Usuario actualizado correctamente!')
         return redirect(url_for('user_bp.index'))
     return render_template('create_user.html', user=user)
+
 
 # Ruta para eliminar un usuario
 @user_bp.route('/delete/<int:id>')
