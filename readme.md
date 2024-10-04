@@ -100,20 +100,25 @@ Esta es una aplicación básica construida con Flask
 CRUD de Usuarios: Permite crear, leer, actualizar y eliminar usuarios en una base de datos SQLite.
 
 Los usuarios tienen atributos como nombre, email y contraseña.
+
 Autenticación de Usuarios:
 
 Los usuarios pueden registrarse y loguearse utilizando su email y contraseña.
 Al iniciar sesión, se guarda su nombre en la sesión para personalizar la experiencia.
+
 Perfil de Usuario:
 
 Después de iniciar sesión, los usuarios pueden acceder a una página de perfil donde pueden editar su información personal y también tienen la opción de eliminar su cuenta.
+
 Interfaz de Usuario:
 
 La aplicación utiliza plantillas HTML con una barra de navegación que cambia según si el usuario está logeado o no.
 Se incluye una barra de búsqueda que permite buscar usuarios por nombre.
+
 Navegación:
 
 El navbar incluye enlaces a la página de inicio y a la página de login, y muestra el nombre del usuario y un botón de perfil cuando el usuario está autenticado.
+
 Manejo de Sesiones:
 
 Utiliza sesiones para mantener el estado del usuario, asegurando que solo los usuarios autenticados puedan acceder a ciertas funcionalidades, como editar su perfil.
