@@ -68,18 +68,73 @@ La aplicación estará disponible en [http://127.0.0.1:5000](http://127.0.0.1:50
 
 ## Estructura del proyecto
 
+La aplicacion en general tiene una arquitectura MVC
+La arquitectura MVC se divide en tres componentes:
+
+Modelo: Gestiona los datos y la lógica de negocio. Carpetas models,services
+
+Vista: Muestra la interfaz de usuario y presenta los datos. Carpetas templates, static
+
+Controlador: Actúa como intermediario, procesando las solicitudes del usuario y actualizando el modelo y la vista. Carpeta controllers
 ```bash
-flask-app/
+app-usuarios/
 │
 ├── app.py                  # Archivo principal de la aplicación
-├── venv/                   # Entorno virtual
-├── requirements.txt         # Dependencias del proyecto
+├── .venv/                  # Entorno virtual
+├── config                  # Archivo para la configuracion de la app
+├── controllers             # Carpeta de las rutas/endpoints
+├── instance                # Carpeta donde se almacenara la base de datos
+├── models                  # Carpeta de las entidades
+├── services                # Carpeta de los servicios
+├── static                  # Archivos estaticos
+├── templates               # Archivos HTML
+├── tests                   # Testing
+├── .env                    # Archivo necesario para variables de entorno
 └── README.md                # Este archivo
+
 ```
 
 ## Descripción de la aplicación
 
-Esta es una aplicación básica construida con Flask que incluye las rutas y funcionalidades simples. Ideal para entender el flujo de trabajo en Flask.
+Esta es una aplicación básica construida con Flask 
+CRUD de Usuarios: Permite crear, leer, actualizar y eliminar usuarios en una base de datos SQLite.
+
+Los usuarios tienen atributos como nombre, email y contraseña.
+Autenticación de Usuarios:
+
+Los usuarios pueden registrarse y loguearse utilizando su email y contraseña.
+Al iniciar sesión, se guarda su nombre en la sesión para personalizar la experiencia.
+Perfil de Usuario:
+
+Después de iniciar sesión, los usuarios pueden acceder a una página de perfil donde pueden editar su información personal y también tienen la opción de eliminar su cuenta.
+Interfaz de Usuario:
+
+La aplicación utiliza plantillas HTML con una barra de navegación que cambia según si el usuario está logeado o no.
+Se incluye una barra de búsqueda que permite buscar usuarios por nombre.
+Navegación:
+
+El navbar incluye enlaces a la página de inicio y a la página de login, y muestra el nombre del usuario y un botón de perfil cuando el usuario está autenticado.
+Manejo de Sesiones:
+
+Utiliza sesiones para mantener el estado del usuario, asegurando que solo los usuarios autenticados puedan acceder a ciertas funcionalidades, como editar su perfil.
+
+
+## Librerias necesarias
+Se encuentra en el archivo requierements.txt, para mas infomacion son las siguientes:
+- blinker==1.8.2
+- click==8.1.7
+- colorama==0.4.6
+- Flask==3.0.3
+- Flask-SQLAlchemy==3.1.1
+- greenlet==3.1.1
+- itsdangerous==2.2.0
+- Jinja2==3.1.4
+- MarkupSafe==2.1.5
+- python-dotenv==1.0.1
+- SQLAlchemy==2.0.35
+- typing_extensions==4.12.2
+- Werkzeug==3.0.4
+- WTForms~=3.1.2
 
 ## Comandos útiles
 
