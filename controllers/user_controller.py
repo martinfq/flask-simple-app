@@ -1,15 +1,37 @@
 from flask import render_template, request, redirect, url_for, flash, session
+from markupsafe import escape
 from models.user_model import User, db
 from controllers.auth_controller import login_required
 from validators.user_forms import EditProfileForm, EmptyForm
 from services.user_service import search_users
+import re
+
+
+def sanitize_input(input_string):
+    """Sanitiza el input eliminando caracteres no deseados"""
+    # Permitimos solo caracteres alfanuméricos y algunos de uso común como espacios.
+    return re.sub(r'[^\w\s]', '', input_string)
 
 
 def index():
-    search_query = request.args.get('search')
+    search_query = request.args.get('search', '').strip()
+
+    # Validar si la cadena de búsqueda contiene caracteres válidos (ejemplo: alfanuméricos).
+    if search_query:
+        # Sanitizamos el input para evitar ataques XSS y otros.
+        sanitized_query = sanitize_input(search_query)
+        # También puedes escapar el input si lo vas a mostrar en algún lugar del frontend.
+        escaped_query = escape(sanitized_query)
+    else:
+        escaped_query = ''
+
+    # Obtener el número de página, asegurando que sea un entero
     page = request.args.get('page', 1, type=int)
-    users = search_users(search_query, page, 5)
-    return render_template('index.html', users=users, search_query=search_query)
+
+    # Llamar a tu función de búsqueda usando la consulta sanitizada
+    users = search_users(escaped_query, page, 5)
+
+    return render_template('index.html', users=users, search_query=escaped_query)
 
 
 @login_required
