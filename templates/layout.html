@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,23 @@
     <link rel="stylesheet" href="/static/css/home.css">
     <link rel="stylesheet" href="/static/css/user_list.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">
             <a href="/">
-            <img src="/static/img/logo.jpg" alt="Logo">
-        </a>
+                <img src="/static/img/logo.jpg" alt="Logo">
+            </a>
         </div>
         {% if session.get('user_id') %}
-            <h3 class="h3">Hola! {{ session.get('user_name') }}</h3>
-            <div class="login-button">
-                <a href="/edit_profile" class="btn">Perfil</a>
-            </div>
+        <h3 class="h3">Hola! {{ session.get('user_name') }}</h3>
+        <div class="login-button">
+            <a href="/edit_profile" class="btn">Perfil</a>
+        </div>
         {% else %}
-            <div class="login-button">
-                <a href="/login" class="btn">Ingresar</a>
-            </div>
+        <div class="login-button">
+            <a href="/login" class="btn">Ingresar</a>
+        </div>
         {% endif %}
     </nav>
     <!-- Contenido dinámico -->
@@ -35,4 +37,5 @@
         <p>&copy; 2024 Mi Aplicación de Usuarios</p>
     </footer>
 </body>
+
 </html>

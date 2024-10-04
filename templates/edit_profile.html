@@ -31,7 +31,8 @@
     <div class="action-buttons-section">
         <div class="action-buttons">
             <a href="/logout" class="btn-logout">Cerrar Sesión</a>
-            <form method="POST" action="{{ url_for('delete_profile') }}" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta? Esta acción es irreversible.');">
+            <form method="POST" action="{{ url_for('delete_profile') }}"
+                onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta? Esta acción es irreversible.');">
                 {{ form.hidden_tag() }}
                 <button type="submit" class="btn-delete">Eliminar Cuenta</button>
             </form>

@@ -3,9 +3,48 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero">
-    <img src="/static/img/banner.webp" alt="Banner Image">
-</section>
+<div class="slide">
+    <div class="slide-inner">
+        <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
+        <div class="slide-item">
+            <img src="static/img/banner.webp">
+        </div>
+        <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+            <img src="static/img/img1.jpg">
+        </div>
+        <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+            <img src="static/img/img2.jpg">
+        </div>
+        <label for="slide-3" class="slide-control prev control-1">‹</label>
+        <label for="slide-2" class="slide-control next control-1">›</label>
+        <label for="slide-1" class="slide-control prev control-2">‹</label>
+        <label for="slide-3" class="slide-control next control-2">›</label>
+        <label for="slide-2" class="slide-control prev control-3">‹</label>
+        <label for="slide-1" class="slide-control next control-3">›</label>
+        <ol class="slide-indicador">
+            <li>
+                <label for="slide-1" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-2" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-3" class="slide-circulo">•</label>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="navigation">
+    <label for="slide1" class="nav-btn"></label>
+    <label for="slide2" class="nav-btn"></label>
+    <label for="slide3" class="nav-btn"></label>
+</div>
+</div>
+</div>
+
 
 <!-- Line Separator -->
 <hr class="separator">
@@ -16,8 +55,7 @@
 
     <form method="GET" action="/" class="search-form">
         <input type="text" name="search" placeholder="Buscar usuarios..."
-               value="{{ search_query if search_query is not none else '' }}"
-               class="search-input">
+            value="{{ search_query if search_query is not none else '' }}" class="search-input">
         <button type="submit" class="search-button">Buscar</button>
     </form>
 
@@ -48,7 +86,8 @@
         <ul class="pagination">
             {% if users.has_prev %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('index', page=users.prev_num, search=search_query) }}">Anterior</a>
+                <a class="page-link"
+                    href="{{ url_for('index', page=users.prev_num, search=search_query) }}">Anterior</a>
             </li>
             {% else %}
             <li class="page-item disabled"><span class="page-link">Anterior</span></li>
@@ -60,7 +99,8 @@
             <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('index', page=page_num, search=search_query) }}">{{ page_num }}</a>
+                <a class="page-link" href="{{ url_for('index', page=page_num, search=search_query) }}">{{ page_num
+                    }}</a>
             </li>
             {% endif %}
             {% else %}
@@ -70,7 +110,8 @@
 
             {% if users.has_next %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('index', page=users.next_num, search=search_query) }}">Siguiente</a>
+                <a class="page-link"
+                    href="{{ url_for('index', page=users.next_num, search=search_query) }}">Siguiente</a>
             </li>
             {% else %}
             <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
