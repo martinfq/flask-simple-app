@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
 }
 
 /* Navbar */
@@ -128,4 +129,136 @@ body {
     padding: 10px;
     margin-top: auto;
     position: relative;
+}
+
+/* Profile Section Styles */
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout-section, .delete-section {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* General Styles */
+.profile-container {
+    display: flex;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 20px auto
+
+}
+
+/* Left section for the form */
+.profile-form-section {
+    flex: 1;
+    margin-right: 2rem;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Update Button */
+.btn-update {
+    padding: 0.75rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: #45a049;
+}
+
+/* Right section for action buttons */
+.action-buttons-section {
+    flex: 0.4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.action-buttons a, .action-buttons button {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Logout Button */
+.btn-logout {
+    background-color: #007BFF;
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: #FF5C5C;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #e60000;
 }
