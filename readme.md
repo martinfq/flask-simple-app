@@ -64,6 +64,9 @@ python app.py
 
 La aplicación estará disponible en [http://127.0.0.1:5000](http://127.0.0.1:5000) de forma local.
 
+See puede crear usuarios o utilizar los que ya tiene la base de datos
+Credenciales
+email: pedro@gmail.com |contraseña: 123456
 ---
 
 ## Estructura del proyecto
