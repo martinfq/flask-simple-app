@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect, url_for, flash, session
 from models.user_model import User, db
 from controllers.auth_controller import login_required
-from validators.user_forms import EditProfileForm,EmptyForm
+from validators.user_forms import EditProfileForm, EmptyForm
 from services.user_service import search_users
+
 
 def index():
     search_query = request.args.get('search')
@@ -39,6 +40,7 @@ def edit_profile():
                 print(f"Error al guardar en la base de datos: {e}")
 
     return render_template('edit_profile.html', form=form, user=user)
+
 
 @login_required
 def delete_profile():
